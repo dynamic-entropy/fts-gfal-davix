@@ -1,0 +1,15 @@
+[submodule "davix"]
+	path = davix
+	url = https://github.com/dynamic-entropy/davix.git
+[submodule "gfal2"]
+	path = gfal2
+	url = https://github.com/dynamic-entropy/gfal2.git
+[submodule "gfal2-util"]
+	path = gfal2-util
+	url = https://github.com/dynamic-entropy/gfal2-util.git
+[submodule "gfal2-python"]
+	path = gfal2-python
+	url = https://github.com/dynamic-entropy/gfal2-python.git
+[submodule "fts3"]
+	path = fts3
+	url = https://github.com/dynamic-entropy/fts3.git
