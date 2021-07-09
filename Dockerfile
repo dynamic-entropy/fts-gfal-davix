@@ -9,39 +9,34 @@ RUN yum -y install e2fsprogs-devel libuuid-devel pugixml-devel
 RUN yum -y install boost-devel python-devel python-pip
 RUN yum -y install libxml2-devel openssl-devel
 RUN yum -y install cmake3
+RUN yum -y install gsoap-devel which
 
 WORKDIR /home/dev
-
-RUN echo "INDIA"
 
 RUN git clone --recursive https://github.com/dynamic-entropy/fts-gfal-davix.git
 
 WORKDIR /home/dev/fts-gfal-davix
 
-#Present installation for davix - package manager
-# RUN yum -y install davix-devel
-
-#Desired installation for davix - building from source
 RUN cd davix && \
     git submodule update --recursive --init 
 
-# RUN mkdir davix/build && cd davix/build && \
-#     cmake3 -DCMAKE_INSTALL_PREFIX=/ .. && \
-#     make && \
-#     make install
+RUN mkdir davix/build && cd davix/build && \
+    cmake3 -DENABLE_THIRD_PARTY_COPY=TRUE -DCMAKE_INSTALL_PREFIX=/usr .. && \
+    make && \
+    make install
 
 # #build and install gfal2
-# RUN mkdir gfal2/build && cd gfal2/build && \
-#     cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONF_INSTALL_DIR=/etc .. && \
-#     make && \
-#     make install
+RUN mkdir gfal2/build && cd gfal2/build && \
+    cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONF_INSTALL_DIR=/etc .. && \
+    make && \
+    make install
 
 # #install gfal-python
-# RUN cd gfal2-python && \
-#     python setup.py install
+RUN cd gfal2-python && \
+    python setup.py install
 
 # #install gfal-util
-# RUN cd gfal2-util && \
-#     python setup.py install
+RUN cd gfal2-util && \
+    python setup.py install
 
 CMD ["/bin/bash"]
