@@ -26,7 +26,7 @@ RUN cd davix && \
     git submodule update --recursive --init 
 
 # RUN mkdir davix/build && cd davix/build && \
-#     cmake3 -DCMAKE_INSTALL_PREFIX=/ && \
+#     cmake3 -DCMAKE_INSTALL_PREFIX=/ .. && \
 #     make && \
 #     make install
 
